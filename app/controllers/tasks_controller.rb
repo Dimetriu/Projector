@@ -31,9 +31,9 @@ class TasksController < ApplicationController
     @task = @project.tasks.create(task_params)
     respond_to do |format|
       if @task.save
-        format.html { redirect_to project_path }
+        format.html { redirect_to @project }
         format.json { render :show, status: :created, location: @project }
-        flash[:success] = "Task was created! You can #{make_undo_link} this action"
+        flash[:success] = "Task was created! You can undo this action"
       else
         format.html { render :new }
         format.json { render json: @task.errors, status: :unprocessable_entity }
@@ -48,7 +48,7 @@ class TasksController < ApplicationController
       if @task.update(task_params)
         format.html { redirect_to @project }
         format.json { render :show, status: :ok, location: @project }
-        flash[:success] = "Task was updated! You can #{make_undo_link} this action"
+        flash[:success] = "Task was updated! You can undo this action"
       else
         format.html { render :edit }
         format.json { render json: @task.errors, status: :unprocessable_entity }
@@ -63,7 +63,7 @@ class TasksController < ApplicationController
     respond_to do |format|
       format.html { redirect_to @project }
       format.json { head :no_content }
-      flash[:success] = "Task was deleted! You can #{make_undo_link} this action"
+      flash[:success] = "Task was deleted! You can undo this action"
     end   
   end
 

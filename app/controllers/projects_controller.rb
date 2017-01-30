@@ -16,7 +16,7 @@ class ProjectsController < ApplicationController
 
   # GET /projects/new
   def new
-    @project = current_user.projects.build
+    @project = Project.new
   end
 
   # GET /projects/1/edit
@@ -28,7 +28,7 @@ class ProjectsController < ApplicationController
   # POST /projects
   # POST /projects.json
   def create
-    @project = current_user.projects.build(project_params)
+    @project = Project.new(project_params)
 
     respond_to do |format|
       if @project.save
@@ -38,7 +38,7 @@ class ProjectsController < ApplicationController
         format.html { render :new }
         format.json { render json: @project.errors, status: :unprocessable_entity }
       end 
-      flash[:success] = "Project was created! You can #{make_undo_link} this action"      
+      flash[:success] = "Project was created! You can undo this action"      
     end
   end
 
@@ -53,7 +53,7 @@ class ProjectsController < ApplicationController
         format.html { render :edit }
         format.json { render json: @project.errors, status: :unprocessable_entity }
       end 
-      flash[:success] = "Project was updated! You can #{make_undo_link} this action"             
+      flash[:success] = "Project was updated! You can undo this action"             
     end
   end
 
@@ -65,7 +65,7 @@ class ProjectsController < ApplicationController
       format.html { redirect_to root_path }
       format.json { head :no_content }
     end  
-    flash[:success] = "Project was deleted! You can #{make_undo_link} this action"    
+    flash[:success] = "Project was deleted! You can undo this action"    
   end
 
   private
