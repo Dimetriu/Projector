@@ -3,7 +3,7 @@
   <% if task.priority? && task.done? %>
     <h3 style="font-weight: bold; opacity: 0.5; text-decoration: line-through; word-wrap: break-word;">
     <span style="color: tomato;"><%= task.date.strftime('%e %b. %y.') %></span> 
-      <%= task.content.capitalize %> <%= @project_id %>
+      <%= task.content.capitalize %>
     
     <%= link_to project_task_path(@project, task.id), method: :delete, id: 'delete', data_toggle: 'tooltip' do %>
       <span class="pull-right btn btn-danger delete glyphicon glyphicon-remove" data-toggle="tooltip" placement="right" title="delete"></span>
@@ -16,7 +16,7 @@
 
   <% elsif task.priority? %>
     <h3 style="font-weight: bold; word-wrap: break-word;">
-    <span style="color: tomato;"><%= task.date.strftime('%e %b. %y.') %></span> <%= task.content.capitalize %> <%= @project_id %>
+    <span style="color: tomato;"><%= task.date.strftime('%e %b. %y.') %></span> <%= task.content.capitalize %>
 
     <%= link_to project_task_path(@project, task.id), method: :delete, id: 'delete', data_toggle: 'tooltip' do %>
       <span class="pull-right btn btn-danger delete glyphicon glyphicon-remove" data-toggle="tooltip" placement="right" title="delete"></span>
@@ -28,7 +28,7 @@
     </h3>
 
   <% elsif task.done? %>
-    <h3 style="opacity: 0.5; text-decoration: line-through; word-wrap: break-word;"><span style="color: tomato;"><%= task.date.strftime('%e %b. %y.') %></span> <%= task.content.capitalize %> <%= @project_id %>
+    <h3 style="opacity: 0.5; text-decoration: line-through; word-wrap: break-word;"><span style="color: tomato;"><%= task.date.strftime('%e %b. %y.') %></span> <%= task.content.capitalize %>
 
     <%= link_to project_task_path(@project, task.id), method: :delete, id: 'delete', data_toggle: 'tooltip' do %>
       <span class="pull-right btn btn-danger delete glyphicon glyphicon-remove" data-toggle="tooltip" placement="right" title="delete"></span>
