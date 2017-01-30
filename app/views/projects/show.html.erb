@@ -1,14 +1,45 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
 
-<p>
-  <strong>Title:</strong>
-  <%= @project.title %>
-</p>
+  <div class="col-xs-2">
+    <ul class="nav nav-pills nav-stacked">
+      <li class="active">
+        <p>Projects</p><hr>
+      </li>
+      <li>
+        <% @projects.each do |project| %>  
+          <%= link_to project do %>            
+            <p><%= project.title.capitalize %></p>
+          <% end %>     
+        <% end %>        
+      </li>   
+    </ul>
+  </div>
 
-<p>
-  <strong>Description:</strong>
-  <%= @project.description %>
-</p>
-
-<%= link_to 'Edit', edit_project_path(@project) %> |
-<%= link_to 'Back', projects_path %>
+  <div class="col-xs-10">
+    <div class="panel panel-default">
+      <div class="panel-heading">      
+        <ul class="nav nav-pills navbar-right">
+        <% if !@project.tasks.empty? %>
+          <li><%= link_to 'NEW TASK', new_project_task_path(@project) %></li>
+        <% end %>
+          <li><%= link_to 'EDIT', edit_project_path(@project) %></li>
+          <li><%= link_to 'DELETE', @project, method: :delete %></li>
+        </ul>
+        <h3 class="line"><%= @project.title.upcase %></h3>
+      </div>
+      <div class="panel-body line">          
+        <p><%= @project.description.capitalize %></p>          
+      </div>
+      
+      <ul class="list-group">    
+        <%= render @project.tasks %>
+        <% if @project.tasks.empty? %>
+          <li class="list-group-item"> 
+            <%= render 'tasks/form' %>
+          </li>
+        <% end %>    
+      </ul>
+    </div> 
+  </div>  
+  
+</div>

@@ -1,12 +1,19 @@
-<%= simple_form_for(@project) do |f| %>
+<%= simple_form_for(@project, remote: true) do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.input :title %>
-    <%= f.input :description %>
+    <div class="input-group">
+      <span class="input-group-addon">title</span>
+      <%= f.input :title, label: false, autofocus: true %>
+    </div><br>
+      <%= f.input :description,  label: false, placeholder: 'description...' %>
   </div>
 
-  <div class="form-actions">
-    <%= f.button :submit %>
+  <div class="form-actions" style="text-align: center;">
+    <div class="row">
+      <div class="col-xs-12">
+        <%= f.button :submit, class: 'btn-group btn-group-justified btn-primary btn-lg' %>
+      </div>
+    </div>    
   </div>
 <% end %>

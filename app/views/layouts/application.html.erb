@@ -1,14 +1,39 @@
 <!DOCTYPE html>
-<html>
+<html> 
 <head>
-  <title>Projector</title>
+  <title>Embracer</title> 
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 </head>
 <body>
+  <nav class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+      <%= link_to 'BRAND', projects_path, class: 'navbar-brand' %>
+      <ul class="nav navbar-nav">
+        <% if user_signed_in? %>
+          <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
+        <% else %>
+          <li><%= link_to "Log In", new_user_session_path %></li>
+        <% end -%>
+      </ul>
+      <%= link_to 'NEW TODO', new_project_path, class: 'btn btn-primary navbar-btn navbar-right' %>
+    </div>
+  </nav>
 
-<%= yield %>
+  <div class="container-fluid">
+    <% flash.each do |key, value| %>
+      <div class="alert alert-<%= key %>">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <h4><%= value.html_safe %></h4>
+      </div>
+    <% end %>
+  </div>
+    
+  <section class="container-fluid" style="margin-bottom: 100px;">
+    <%= yield %> 
+  </section>
 
 </body>
 </html>

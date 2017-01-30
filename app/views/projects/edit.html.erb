@@ -1,6 +1,29 @@
-<h1>Editing Project</h1>
+<div class="row">
 
-<%= render 'form' %>
+  <div class="col-xs-9">
+    <div class="panel panel-default">
+      <div class="panel-heading">      
+        <ul class="nav nav-pills btn-group navbar-right">
+          <li><%= link_to 'CANCEL', @project %></li>
+        </ul>
+        <h3><%= @project.title.capitalize %></h3>
+      </div>
+      <div class="panel-body">          
+        <%= render 'form' %>
+      </div>
+    </div> 
+  </div>
 
-<%= link_to 'Show', @project %> |
-<%= link_to 'Back', projects_path %>
+  <div class="col-xs-3">
+    <ul class="nav nav-pills nav-stacked">
+      <li>
+        <% @projects.each do |project| %>  
+          <%= link_to @project do %>            
+            <h5><%= @project.title.upcase %></h5>
+          <% end %>     
+        <% end %>
+      </li>
+    </ul>
+  </div>
+  
+</div>
