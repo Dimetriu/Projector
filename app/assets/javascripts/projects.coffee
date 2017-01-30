@@ -1,3 +1,16 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
+$(document).on "turbolinks:load", ->
+  $('.form_datetime').datetimepicker({
+    format: 'DD/MM/YYYY'  
+  })
+
+$(document).on "turbolinks:load", ->
+  $('.edit').tooltip({
+    title: 'edit' 
+    placement: 'left'  
+  })
+
+$(document).on "turbolinks:load", ->
+  $('.delete').tooltip({
+    title: 'delete'   
+    placement: 'right'
+  })
