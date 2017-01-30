@@ -1,14 +1,27 @@
-<%= simple_form_for(@task) do |f| %>
+<%= simple_form_for([@project, @task || @project.tasks.build], remote: true) do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.input :content %>
-    <%= f.input :date %>
-    <%= f.input :priority %>
-    <%= f.input :done %>
+    <div class="input-group">
+      <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
+      <%= f.input :content, label: false, autofocus: true, hint: true %>
+    </div><br>
+      <%= f.input :date, as: :date_time_picker, label: false %>
+    <div class="btn-group btn-group-justified"> 
+      <div class="btn-group">
+        <%= f.input :priority, label_html: { class: 'btn btn-default btn-lg' } %>         
+      </div> 
+      <div class="btn-group">
+        <%= f.input :done, label_html: { class: 'btn btn-default btn-lg' } %>   
+      </div>   
+    </div>
   </div>
 
-  <div class="form-actions">
-    <%= f.button :submit %>
+  <div class="form-actions" style="text-align: center;">
+    <div class="row">
+      <div class="col-xs-12">
+        <%= f.button :submit, class: 'btn-group btn-group-justified btn-primary btn-lg' %>
+      </div>
+    </div>    
   </div>
 <% end %>
